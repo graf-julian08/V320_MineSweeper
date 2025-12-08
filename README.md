@@ -1,5 +1,5 @@
 # 320 isch üses Lieblingsmodul
 
-??? note "Testing"
+??? info "Testing"
 ``sql
 ``
