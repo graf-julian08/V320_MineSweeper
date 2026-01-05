@@ -83,6 +83,21 @@ namespace V320_MineSweeper
             return true;
         }
 
+        public bool IstGewonnen()
+        {
+            for (int y = 0; y < Hoehe; y++)
+            {
+                for (int x = 0; x < Breite; x++)
+                {
+                    if (!_grid[y, x].IstMine && !_grid[y, x].IstAufgedeckt)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         public Feld GetField(int x, int y) => _grid[y, x];
 
         public Memento ErstelleMemento() => new Memento(_grid, Hoehe, Breite);

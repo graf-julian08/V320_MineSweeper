@@ -27,13 +27,16 @@ namespace V320_MineSweeper
             while (true)
             {
                 _view.ZeigeBoard(_board);
-                string input = _view.LiefereEingabe();
 
-                if (input.ToLower() == "u")
+                if (_board.IstGewonnen())
                 {
-                    MacheRueckgaengig();
-                    continue;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("\n Gewonnen!");
+                    Console.ResetColor();
                 }
+
+                string input = _view.LiefereEingabe();
+                if (input.ToLower() == "u") { MacheRueckgaengig(); continue; }
 
                 _caretaker.Save(_board.ErstelleMemento());
 
@@ -46,12 +49,15 @@ namespace V320_MineSweeper
                     if (!_board.Aufdecken(x, y))
                     {
                         _view.ZeigeBoard(_board);
-                        Console.WriteLine("GAME OVER! Rückgängig machen? (j/n)");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nBOOM! Du bist auf eine Mine getreten.");
+                        Console.ResetColor();
+                        Console.WriteLine("Rückgängig machen? (j/n)");
                         if (Console.ReadLine().ToLower() == "j") MacheRueckgaengig();
                         else break;
                     }
                 }
-                catch { Console.WriteLine("Ungültige Eingabe!"); }
+                catch { Console.WriteLine("Ungültige Eingabe! Bitte x,y verwenden."); }
             }
         }
 
