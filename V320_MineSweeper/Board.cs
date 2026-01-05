@@ -56,7 +56,7 @@ namespace V320_MineSweeper
 
         private int ZaehleUmgebendeMinen(int x, int y)
         {
-            int count = 0;
+            int count = 0; 
             for (int i = -1; i <= 1; i++)
                 for (int j = -1; j <= 1; j++)
                 {
